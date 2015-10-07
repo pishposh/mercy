@@ -20,7 +20,11 @@ describe "vistor to an article page with inline share tools", ->
         yield assertCollapsed SELECTORS.INLINE
 
     she "sees the fixed share tools after scrolling down a bit", ->
-        yield browser.scroll(0, 600)
+        unless browser.capabilities.platformName == 'iOS'
+            yield browser.scroll(0, 600)
+        else # workaround appium as of v1.4.13:
+            yield browser.execute "window.scrollTo(0, 600)"
+
         yield browser.waitForVisible(SELECTORS.FIXED, 1000)
 
     she "sees a sharing modal after tapping for more options", ->

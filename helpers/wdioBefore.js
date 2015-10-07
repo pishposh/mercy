@@ -12,10 +12,11 @@ module.exports = async function () {
     browser.resetMobileWeb = async () => {
         await browser.url('/.status');
         await* [
-            browser.deleteCookie()          .catch(err => console.error("\nWARNING:" + err.message + "\n")),
-            browser.localStorage('DELETE')  .catch(err => console.error("\nWARNING:" + err.message + "\n")),
-            browser.sessionStorage('DELETE').catch(err => console.error("\nWARNING:" + err.message + "\n")),
+            browser.deleteCookie()          .catch(err => null /*console.error("\nWARNING:" + err.message + "\n")*/),
+            browser.localStorage('DELETE')  .catch(err => null /*console.error("\nWARNING:" + err.message + "\n")*/),
+            browser.sessionStorage('DELETE').catch(err => null /*console.error("\nWARNING:" + err.message + "\n")*/),
         ];
+        await browser.url('about:blank');
     };
 
     await* [
@@ -23,6 +24,10 @@ module.exports = async function () {
         browser.timeouts("script", 10000),
         browser.timeouts("implicit", 0)
     ];
+
+    if (browser.capabilities) throw new Error("refusing to overwrite browser.capabilities");
+    browser.capabilities = (await browser.session()).value;
+    // console.log("browser.capabilities", browser.capabilities);
 
     global.he = global.she = global.they = function () { it.apply(this, arguments) };
 };

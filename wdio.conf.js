@@ -26,8 +26,8 @@ exports.config = {
     // backend you should define the host address, port, and path here.
     //
     host: '0.0.0.0',
-    port: 4444,
-    // port: 4723,
+    // port: 4444,
+    port: 4723,
     path: '/wd/hub',
 
     //
@@ -60,8 +60,8 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [
-        { browserName: 'chrome', chromeOptions: { mobileEmulation: { deviceName: "Apple iPhone 5" } } },
-        // { platformName: "iOS", deviceName: "iPhone 5s", platformVersion: "9.0", browserName: "Safari" },
+        // { browserName: 'chrome', chromeOptions: { mobileEmulation: { deviceName: "Apple iPhone 5" } } },
+        { platformName: "iOS", deviceName: "iPhone 5s", platformVersion: "9.0", browserName: "Safari" },
         // { browserName: 'safari' },
         // { browserName: 'firefox' },
         // { browserName: 'chrome' },

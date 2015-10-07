@@ -13,7 +13,11 @@ describe "visitor to an article with a sprinkled span image", ->
 
     she "taps the ACM's Show Full Article button", ->
         # scroll the ACM button into view:
-        yield browser.scroll("#additional-content button", 0, -200) # leave room for fixed header
+        unless browser.capabilities.platformName == 'iOS'
+            yield browser.scroll("#additional-content button", 0, -200) # leave room for fixed header
+        else # workaround appium as of v1.4.13:
+            yield browser.execute("document.querySelector('#additional-content button').scrollIntoView(); scrollBy(0,-200)")
+
         yield browser.click("#additional-content button")
         yield browser.pause(1000) # wait for ACM to slide away
 
@@ -21,7 +25,10 @@ describe "visitor to an article with a sprinkled span image", ->
         yield browser.waitForVisible(".span-image.related-asset a img", 5000)
 
     she "clicks the sprinkled span image", ->
-        yield browser.scroll(".span-image.related-asset a img", 0, -200) # leave room for fixed header
+        unless browser.capabilities.platformName == 'iOS'
+            yield browser.scroll(".span-image.related-asset a img", 0, -200) # leave room for fixed header
+        else # workaround appium as of v1.4.13:
+            yield browser.execute("document.querySelector('.span-image.related-asset a img').scrollIntoView(); scrollBy(0,-200)")
         yield browser.click(".span-image.related-asset a img")
 
     she "sees the modal lightbox", ->

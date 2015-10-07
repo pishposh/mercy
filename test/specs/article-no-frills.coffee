@@ -4,10 +4,6 @@ describe "visitor to a regular, no-frills article", ->
     afterEach screenshotIfFailed
     afterEach skipRestIfFailed
 
-    before ->
-        capabilities = (yield browser.session()).value
-        @isRotatable = (capabilities.rotatable or capabilities.platformName == 'iOS')
-
     she "loads the page", ->
         yield browser.url('/2014/12/31/business/media/sony-attack-first-a-nuisance-swiftly-grew-into-a-firestorm-.html')
         yield browser.awaitMobileWebJS()
@@ -54,12 +50,12 @@ describe "visitor to a regular, no-frills article", ->
         ]
 
     she "rotates device to landscape", ->
-        do @skip unless @isRotatable
-        yield browser.rotate("LANDSCAPE")
-        yield browser.pause(1000)
+        do @skip unless browser.capabilities.rotatable
+        yield browser.setOrientation("LANDSCAPE")
+        yield browser.pause(100)
 
     she "still sees close button in the right place", ->
-        do @skip unless @isRotatable
+        do @skip unless browser.capabilities.rotatable
         assert yield browser.isVisible(".modal-lightbox .modal-close")
         size = yield browser.getElementSize(".modal-lightbox .modal-close")
         width = size.width + 10 # 10 px of wiggle room for margin
@@ -68,7 +64,7 @@ describe "visitor to a regular, no-frills article", ->
         assert location.y <= 10
 
     she "sees footer in the right place", ->
-        do @skip unless @isRotatable
+        do @skip unless browser.capabilities.rotatable
         assert yield browser.isVisible(".modal-lightbox .modal-footer")
         modalSize = yield browser.getElementSize(".modal-lightbox")
         footerSize = yield browser.getElementSize(".modal-lightbox .modal-footer")
@@ -78,9 +74,9 @@ describe "visitor to a regular, no-frills article", ->
         assert location.y <= (modalSize.height - footerSize.height + 1) # wiggle room because Selenium
 
     she "rotates device back to portrait", ->
-        do @skip unless @isRotatable
-        yield browser.rotate("PORTRAIT")
-        yield browser.pause(1000)
+        do @skip unless browser.capabilities.rotatable
+        yield browser.setOrientation("PORTRAIT")
+        yield browser.pause(100)
 
     she "closes the modal lightbox", ->
         yield browser.click(".modal-lightbox .modal-close")
