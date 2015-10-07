@@ -4,7 +4,7 @@ describe("visitor to www.google.com", function() {
     afterEach(screenshotIfFailed);
     afterEach(skipRestIfFailed);
 
-    she("loads the page", function* () {
+    she("loads http://www.google.com", function* () {
         yield browser.url("http://www.google.com");
     });
 

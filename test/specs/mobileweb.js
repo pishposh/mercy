@@ -6,7 +6,7 @@ describe("visitor to /", function() {
 
     before(browser.resetMobileWeb);
 
-    she("loads the page", async () => {
+    she("loads /", async () => {
         await browser.url("/");
         await browser.awaitMobileWebJS();
     });

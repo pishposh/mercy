@@ -2,7 +2,7 @@ describe("visitor to www.apple.com", function() {
     afterEach(screenshotIfFailed);
     afterEach(skipRestIfFailed);
 
-    she("loads the the page", async () => {
+    she("loads http://www.apple.com", async () => {
         await browser.url("http://www.apple.com");
     });
 

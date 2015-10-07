@@ -60,7 +60,7 @@ exports.config = {
     //
     capabilities: [
         { browserName: 'chrome', chromeOptions: { mobileEmulation: { deviceName: "Apple iPhone 5" } } },
-        // { platformName: "iOS", deviceName: "iPhone 6", platformVersion: "8.4", browserName: "Safari" },
+        // { platformName: "iOS", deviceName: "iPhone 5s", platformVersion: "9.0", browserName: "Safari" },
         // { browserName: 'safari' },
         // { browserName: 'firefox' },
         // { browserName: 'chrome' },
