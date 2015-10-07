@@ -6,7 +6,7 @@ describe "visitor to a regular, no-frills article", ->
 
     she "loads the page", ->
         yield browser.url('/2014/12/31/business/media/sony-attack-first-a-nuisance-swiftly-grew-into-a-firestorm-.html')
-        yield browser.awaitMobileWebJS()
+        yield browser.waitForMobileWebJS()
 
     she "doesn't see a growl within a couple seconds", ->
         yield browser.pause(2000)

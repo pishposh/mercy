@@ -6,7 +6,7 @@ describe "vistor to an article page with inline share tools", ->
 
     she "loads the page", ->
         yield browser.url("/2015/01/05/sports/on-el-capitans-dawn-wall-two-climbers-make-slow-progress-toward-a-dream.html")
-        yield browser.awaitMobileWebJS()
+        yield browser.waitForMobileWebJS()
 
     she "sees inline icons to share on facebook, twitter, and to view more options", ->
         yield assertCollapsed SELECTORS.INLINE
@@ -20,11 +20,7 @@ describe "vistor to an article page with inline share tools", ->
         yield assertCollapsed SELECTORS.INLINE
 
     she "sees the fixed share tools after scrolling down a bit", ->
-        unless browser.capabilities.platformName == 'iOS'
-            yield browser.scroll(0, 600)
-        else # workaround appium as of v1.4.13:
-            yield browser.execute "window.scrollTo(0, 600)"
-
+        yield browser.scroll(0, 600)
         yield browser.waitForVisible(SELECTORS.FIXED, 1000)
 
     she "sees a sharing modal after tapping for more options", ->
