@@ -25,7 +25,7 @@ describe("visitor to /", function() {
     })
 
     she("fails here due to timeout, maybe", function* () {
-        var n = Math.floor(Math.random() * 20000);
+        var n = Math.floor(Math.random() * 5000);
         yield browser.executeAsync("setTimeout(arguments[0], " + n + ")");
     })
 
