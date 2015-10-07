@@ -2,7 +2,7 @@ describe("visitor to www.apple.com", function() {
     afterEach(screenshotIfFailed);
     afterEach(skipRestIfFailed);
 
-    she("loads the the page", async () => {
+    she("loads http://www.apple.com", async () => {
         await browser.url("http://www.apple.com");
     });
 
@@ -17,10 +17,11 @@ describe("visitor to www.apple.com", function() {
 
     she("types the word “imac”", async () => {
         await browser.keys("imac");
-        await browser.keys("Return");
+        await browser.keys("Enter");
     });
 
     she("sees the title imac - Apple", async () => {
+        // await browser.pause(500);
         var title = await browser.getTitle();
         assert.equal(title, "imac - Apple");
     });

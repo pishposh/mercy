@@ -14,6 +14,21 @@ require("babel/register")({
 
 exports.config = {
 
+    // =====================
+    // Server Configurations
+    // =====================
+    // Host address of the running Selenium server. This information is usually obsolete as
+    // WebdriverIO automatically connects to localhost. Also if you are using one of the
+    // supported cloud services like Sauce Labs, Browserstack or Testing Bot you also don't
+    // need to define host and port information because WebdriverIO can figure that our
+    // according to your user and key information. However if you are using a private Selenium
+    // backend you should define the host address, port, and path here.
+    //
+    host: '0.0.0.0',
+    port: 4444,
+    // port: 4723,
+    path: '/wd/hub',
+
     //
     // ==================
     // Specify Test Files
@@ -45,6 +60,7 @@ exports.config = {
     //
     capabilities: [
         { browserName: 'chrome', chromeOptions: { mobileEmulation: { deviceName: "Apple iPhone 5" } } },
+        // { platformName: "iOS", deviceName: "iPhone 5s", platformVersion: "9.0", browserName: "Safari" },
         // { browserName: 'safari' },
         // { browserName: 'firefox' },
         // { browserName: 'chrome' },

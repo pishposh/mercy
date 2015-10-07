@@ -54,5 +54,5 @@ function sanitizeCaps(caps) {
     result = result.filter(function(n){
         return n !== undefined && n !== '';
     });
-    return result.join('.');
+    return result.join('-');
 };
