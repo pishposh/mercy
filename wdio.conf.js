@@ -4,6 +4,7 @@ require("babel/register")({
     stage: 2
 });
 
+require("coffee-script/register");
 
 // for Node 0.12+:
 // require("babel/register")({
@@ -39,7 +40,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        './test/specs/**/*.{js,coffee}',
     ],
     // Patterns to exclude.
     exclude: [
@@ -83,7 +84,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", the base url gets prepended.
-    baseUrl: 'http://mobile.nytimes.com',
+    baseUrl: 'http://local.sbx.nytimes.com',
     //
     // Default timeout for all waitForXXX commands.
     waitforTimeout: 10000,
