@@ -6,5 +6,5 @@ exports.config = merge( require('./common.conf.js').config, {
     capabilities: [
         { platformName: "iOS", deviceName: "iPhone 5s", platformVersion: "9.0", browserName: "Safari" }
     ],
-    baseUrl: 'http://local.sbx.nytimes.com' // can be overriden with --base-url=...
+    baseUrl: 'http://local.sbx.nytimes.com' // can be overriden with --baseUrl=...
 } );
