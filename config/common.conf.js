@@ -4,7 +4,8 @@ require("babel/register")({
     stage: 2
 });
 
-require("coffee-script/register");
+require('../helpers/regenerated-coffeescript-register');
+// require("coffee-script/register");
 
 
 // for Node 0.12+:
