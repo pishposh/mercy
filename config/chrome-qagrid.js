@@ -1,7 +1,7 @@
 var merge = require('deepmerge');
 
 exports.config = merge( require('./common.conf.js').config, {
-    host: '127.0.0.1',
+    host: 'qa-selgridhub01.nyhq.nytint.com',
     port: 4444,
     capabilities: [
         { browserName: 'chrome', chromeOptions: { mobileEmulation: { deviceName: "Apple iPhone 5" } } }
