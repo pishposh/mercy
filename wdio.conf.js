@@ -1,2 +1,2 @@
 // default
-module.exports = require('./config/chrome-local-from-local.conf.js');
+module.exports = require('./config/chrome-local.conf.js');
