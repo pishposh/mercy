@@ -7,9 +7,12 @@
     "babel": "^5.8.23",
     "co": "^4.6.0",
     "coffee-script": "^1.10.0",
+    "deepmerge": "^0.2.10",
     "mkdirp": "^0.5.1",
     "mocha": "^2.3.3",
     "moment": "^2.10.6",
+    "optimist": "^0.6.1",
+    "wdio-sync": "0.0.1",
     "webdriverio": "git://github.com/webdriverio/webdriverio#master"
   },
   "devDependencies": {},

@@ -22,7 +22,7 @@ module.exports = async function () {
             this.localStorage('DELETE')  .catch(err => null /*console.error("\nWARNING:" + err.message + "\n")*/),
             this.sessionStorage('DELETE').catch(err => null /*console.error("\nWARNING:" + err.message + "\n")*/),
         ];
-        await this.url('about:blank');
+        await this.url('about:blank'); // ensure referer isn't from nytimes.com
     });
 
     // patch browser.scroll() for appium (as of v1.4.13) being unable to scroll() on iOS:
