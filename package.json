@@ -12,8 +12,7 @@
     "mocha": "^2.3.3",
     "moment": "^2.10.6",
     "optimist": "^0.6.1",
-    "wdio-sync": "0.0.1",
-    "webdriverio": "git://github.com/webdriverio/webdriverio#master"
+    "webdriverio": "^3.2.5"
   },
   "devDependencies": {},
   "scripts": {
