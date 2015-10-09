@@ -47,4 +47,6 @@ module.exports = async function () {
         browser.timeouts("script", 10000),
         browser.timeouts("implicit", 0)
     ];
+
+    global.Browser = require('./deasyncify')(browser);
 };

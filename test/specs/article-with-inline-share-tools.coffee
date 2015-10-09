@@ -1,38 +1,38 @@
 describe "vistor to an article page with inline share tools", ->
 
-    before browser.resetMobileWeb
+    before Browser.resetMobileWeb
     afterEach screenshotIfFailed
     afterEach skipRestIfFailed
 
     she "loads the page", ->
-        yield browser.url("/2015/01/05/sports/on-el-capitans-dawn-wall-two-climbers-make-slow-progress-toward-a-dream.html")
-        yield browser.waitForMobileWebJS()
+        Browser.url("/2015/01/05/sports/on-el-capitans-dawn-wall-two-climbers-make-slow-progress-toward-a-dream.html")
+        Browser.waitForMobileWebJS()
 
     she "sees inline icons to share on facebook, twitter, and to view more options", ->
-        yield assertCollapsed SELECTORS.INLINE
+        assertCollapsed SELECTORS.INLINE
 
     she "sees a sharing modal after tapping for more options", ->
-        yield browser.click("#{SELECTORS.INLINE} #{SELECTORS.CONTROLS.MORE}")
-        yield assertExpanded SELECTORS.INLINE
+        Browser.click("#{SELECTORS.INLINE} #{SELECTORS.CONTROLS.MORE}")
+        assertExpanded SELECTORS.INLINE
 
     she "dismisses the modal by tapping the close button", ->
-        yield browser.click("#{SELECTORS.INLINE} #{SELECTORS.CONTROLS.CLOSE}")
-        yield assertCollapsed SELECTORS.INLINE
+        Browser.click("#{SELECTORS.INLINE} #{SELECTORS.CONTROLS.CLOSE}")
+        assertCollapsed SELECTORS.INLINE
 
     she "sees the fixed share tools after scrolling down a bit", ->
-        yield browser.scroll(0, 600)
-        yield browser.waitForVisible(SELECTORS.FIXED, 1000)
+        Browser.scroll(0, 600)
+        Browser.waitForVisible(SELECTORS.FIXED, 1000)
 
     she "sees a sharing modal after tapping for more options", ->
-        yield browser.click("#{SELECTORS.FIXED} #{SELECTORS.CONTROLS.MORE}")
+        Browser.click("#{SELECTORS.FIXED} #{SELECTORS.CONTROLS.MORE}")
         # proxying events from fixed nav to inline for MWR-5676
-        yield assertCollapsed SELECTORS.FIXED
-        yield assertExpanded SELECTORS.INLINE
+        assertCollapsed SELECTORS.FIXED
+        assertExpanded SELECTORS.INLINE
 
     she "dismisses the modal by tapping the close button", () ->
-        yield browser.click("#{SELECTORS.INLINE} #{SELECTORS.CONTROLS.CLOSE}")
-        yield assertCollapsed SELECTORS.FIXED
-        yield assertCollapsed SELECTORS.INLINE
+        Browser.click("#{SELECTORS.INLINE} #{SELECTORS.CONTROLS.CLOSE}")
+        assertCollapsed SELECTORS.FIXED
+        assertCollapsed SELECTORS.INLINE
 
 
 SELECTORS =
@@ -52,7 +52,7 @@ SELECTORS =
 
 
 assertCollapsed = (parentSelector) ->
-    classes = yield browser.getAttribute(parentSelector, 'class')
+    classes = Browser.getAttribute(parentSelector, 'class')
     assert classes.split(/\s+/).every (className) -> className != 'expanded'
 
     visible = [
@@ -72,16 +72,16 @@ assertCollapsed = (parentSelector) ->
     ]
 
     assert (
-        yield visible.map (selector) -> browser.isVisible("#{parentSelector} #{selector}")
+        visible.map (selector) -> Browser.isVisible("#{parentSelector} #{selector}")
     ).every (isVisible) -> isVisible
 
     assert (
-        yield hidden.map (selector) -> browser.isVisible("#{parentSelector} #{selector}")
+        hidden.map (selector) -> Browser.isVisible("#{parentSelector} #{selector}")
     ).every (isVisible) -> not isVisible
 
 
 assertExpanded = (parentSelector) ->
-    classes = yield browser.getAttribute(parentSelector, 'class')
+    classes = Browser.getAttribute(parentSelector, 'class')
     assert classes.split(/\s+/).some (className) -> className == 'expanded'
 
     visible = [
@@ -101,11 +101,11 @@ assertExpanded = (parentSelector) ->
     ]
 
     assert (
-        yield visible.map (selector) -> browser.isVisible("#{parentSelector} #{selector}")
+        visible.map (selector) -> Browser.isVisible("#{parentSelector} #{selector}")
     ).every (isVisible) -> isVisible
 
     assert (
-        yield hidden.map (selector) -> browser.isVisible("#{parentSelector} #{selector}")
+        hidden.map (selector) -> Browser.isVisible("#{parentSelector} #{selector}")
     ).every (isVisible) -> not isVisible
 
 
